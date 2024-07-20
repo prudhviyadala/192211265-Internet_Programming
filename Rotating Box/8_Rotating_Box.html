@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rotating Box</title>
+	<style>
+		body 
+		{
+			background-color: #000;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+		.rotating-box 
+		{
+			width: 100px;
+			height: 100px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			animation: rotate 2s linear infinite;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.text-box 
+		{
+			width: 80px;
+			height: 80px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
+		@keyframes rotate 
+		{
+			0% {
+				transform: rotate(0deg);
+			}
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="rotating-box">
+		<div class="text-box"><span style="font-size: 12px;">ROTATING BOX</span></div>
+	</div>
+	<script>
+	</script>
+</body>
+</html>

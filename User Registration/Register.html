@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration</title>
+<style>
+    body 
+    {
+        font-family: Arial, sans-serif;
+        background-color: #357d81;
+        color: white;
+        padding: 20px;
+        margin: 0;
+    }
+    form 
+    {
+        background-color: #333333;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        width: 300px;
+        margin: 0 auto;
+    }
+    input[type="text"], input[type="email"], input[type="password"] 
+    {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        color: #333;
+    }
+    input[type="radio"], input[type="checkbox"] 
+    {
+        margin-right: 5px;
+    }
+    input[type="submit"] 
+    {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    input[type="submit"]:hover 
+    {
+        background-color: #45a049;
+    }
+    label 
+    {
+        color: white;
+    }
+</style>
+</head>
+<body>
+<form action="/submit-registration" method="post">
+    <h2>User Registration</h2>
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <label>Gender:</label><br>
+    <input type="radio" id="genderMale" name="gender" value="male" required>
+    <label for="genderMale">Male</label><br>
+    <input type="radio" id="genderFemale" name="gender" value="female">
+    <label for="genderFemale">Female</label><br>
+    <input type="radio" id="genderOther" name="gender" value="other">
+    <label for="genderOther">Other</label><br>
+    <label>Interests:</label><br>
+    <input type="checkbox" id="interestsSports" name="interests[]" value="sports">
+    <label for="interestsSports">Sports</label><br>
+    <input type="checkbox" id="interestsMusic" name="interests[]" value="music">
+    <label for="interestsMusic">Music</label><br>
+    <input type="checkbox" id="interestsBooks" name="interests[]" value="books">
+    <label for="interestsBooks">Books</label><br>
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>

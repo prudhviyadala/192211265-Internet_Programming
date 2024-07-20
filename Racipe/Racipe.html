@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Selection</title>
+    <style>
+        body 
+        {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container 
+        {
+            background-color: skyblue;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            display: block;
+        }
+        .container.hidden 
+        {
+            display: none;
+        }
+        .container h1 
+        {
+            margin-top: 0;
+        }
+        .radio-group 
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .radio-group label 
+        {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .radio-group input[type="radio"] 
+        {
+            margin-right: 5px;
+        }
+        .submit-button 
+        {
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .recipe-details 
+        {
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+        }
+        .recipe-details.active 
+        {
+            display: block;
+        }
+        .recipe-details h2 
+        {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .recipe-details h3 
+        {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        .recipe-details ul, .recipe-details ol 
+        {
+            margin-top: 5px;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+        .recipe-details li 
+        {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="recipeSelection">
+    <h1>Select a Recipe</h1>
+    <form id="recipeForm" onsubmit="return displayRecipe(event)">
+        <div class="radio-group">
+            <label>
+                <input type="radio" name="recipe" value="chocolateChipCookies">
+                Chocolate Chip Cookies
+            </label>
+            <label>
+                <input type="radio" name="recipe" value="pastaCarbonara">
+                Pasta Carbonara
+            </label>
+            <label>
+                <input type="radio" name="recipe" value="greekSalad">
+                Greek Salad
+            </label>
+            <label>
+                <input type="radio" name="recipe" value="spaghettiBolognese">
+                Spaghetti Bolognese
+            </label>
+        </div>
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+<div class="container recipe-details" id="recipeDetails">
+</div>
+<script>
+    function displayRecipeDetails(recipeName) 
+    {
+        var recipeDetailsDiv = document.getElementById('recipeDetails');
+        var recipes = 
+        {
+            chocolateChipCookies: 
+            {
+                name: "Chocolate Chip Cookies",
+                ingredients: ["1 cup butter", "1 cup white sugar", "1 cup packed brown sugar", "2 eggs", "2 teaspoons vanilla extract", "3 cups all-purpose flour", "1 teaspoon baking soda", "2 teaspoons hot water", "1/2 teaspoon salt", "2 cups semisweet chocolate chips"],
+                instructions: 
+                [
+                    "Preheat oven to 350 degrees F (175 degrees C).",
+                    "Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla.",
+                    "Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour and chocolate chips.",
+                    "Drop by large spoonfuls onto ungreased pans.",
+                    "Bake for about 10 minutes in the preheated oven, or until edges are nicely browned."
+                ]
+            },
+            pastaCarbonara: 
+            {
+                name: "Pasta Carbonara",
+                ingredients: ["8 ounces spaghetti", "2 large eggs", "1 cup grated Pecorino Romano cheese", "4 ounces pancetta, chopped", "2 cloves garlic, minced", "Salt and black pepper to taste"],
+                instructions: 
+                [
+                    "Bring a large pot of salted water to a boil. Cook spaghetti according to package instructions until al dente. Drain well.",
+                    "In a small bowl, whisk together eggs and grated cheese. Set aside.",
+                    "In a large skillet, cook pancetta over medium heat until crispy. Add garlic and cook until fragrant.",
+                    "Remove skillet from heat. Immediately add drained spaghetti to skillet and toss to combine with pancetta and garlic.",
+                    "Pour egg and cheese mixture over hot pasta, stirring quickly until creamy and smooth. Season with salt and black pepper.",
+                    "Serve immediately, garnished with additional grated cheese if desired."
+                ]
+            },
+            greekSalad: 
+            {
+                name: "Greek Salad",
+                ingredients: ["1 cucumber, diced","1 bell pepper, chopped","1 red onion, thinly sliced","1 cup cherry tomatoes, halved","1/2 cup Kalamata olives","1/2 cup feta cheese, crumbled","2 tablespoons olive oil","1 tablespoon red wine vinegar","1 teaspoon dried oregano","Salt and pepper to taste"],
+                instructions: 
+                [
+                    "In a large bowl, combine cucumber, bell pepper, red onion, cherry tomatoes, olives, and feta cheese.",
+                    "Drizzle olive oil and red wine vinegar over the salad. Sprinkle with oregano, salt, and pepper.",
+                    "Toss gently to combine.",
+                "Serve immediately."
+                ]
+            },
+            spaghettiBolognese: 
+            {
+                name: "Spaghetti Bolognese",
+                ingredients: 
+                [
+                    "8 ounces spaghetti",
+                    "1 tablespoon olive oil",
+                    "1 onion, finely chopped",
+                    "2 cloves garlic, minced",
+                    "1 carrot, finely chopped",
+                    "1 celery stalk, finely chopped",
+                    "1/2 lb ground beef",
+                    "1/2 lb ground pork",
+                    "1/2 cup red wine (optional)",
+                    "1 can (14 oz) crushed tomatoes",
+                    "1 tablespoon tomato paste",
+                    "1 teaspoon dried oregano",
+                    "1 teaspoon dried basil",
+                    "Salt and pepper to taste",
+                    "Grated Parmesan cheese, for serving"
+                ],
+                instructions: 
+                [
+                    "Cook spaghetti in a large pot of salted boiling water until al dente. Drain and set aside.",
+                    "In a large skillet or saucepan, heat olive oil over medium heat. Add onion and cook until translucent, about 5 minutes.",
+                    "Add garlic, carrot, and celery. Cook until vegetables are softened, about 5 minutes.",
+                    "Add ground beef and pork. Cook until browned, breaking up the meat with a spoon.",
+                    "If using, pour in red wine and cook until it reduces slightly, about 2-3 minutes.",
+                    "Stir in crushed tomatoes, tomato paste, oregano, and basil. Season with salt and pepper to taste.",
+                    "Simmer uncovered over low heat for 30-45 minutes, stirring occasionally, until sauce thickens.",
+                    "Add cooked spaghetti to the sauce, tossing to coat evenly.",
+                    "Serve hot, garnished with grated Parmesan cheese."
+                ]
+            },
+        };
+        if (recipes.hasOwnProperty(recipeName)) 
+        {
+            var recipe = recipes[recipeName];
+            var html = '<h2>' + recipe.name + '</h2>';
+            html += '<h3>Ingredients:</h3><ul>';
+            recipe.ingredients.forEach(function (ingredient) 
+            {
+                html += '<li>' + ingredient + '</li>';
+            });
+            html += '</ul>';
+            html += '<h3>Instructions:</h3><ol>';
+            recipe.instructions.forEach(function (instruction) 
+            {
+                html += '<li>' + instruction + '</li>';
+            });
+            html += '</ol>';
+            recipeDetailsDiv.innerHTML = html;
+            recipeDetailsDiv.classList.add('active');
+            document.getElementById('recipeSelection').classList.add('hidden');
+        } 
+        else 
+        {
+            recipeDetailsDiv.innerHTML = '<p>Recipe not found.</p>';
+        }
+    }
+    function displayRecipe(event) 
+    {
+        event.preventDefault();
+        var selectedRecipe = document.querySelector('input[name="recipe"]:checked');
+        if (selectedRecipe) 
+        {
+            var recipeName = selectedRecipe.value;
+            displayRecipeDetails(recipeName);
+        } 
+        else 
+        {
+            alert('Please select a recipe.');
+        }
+    }
+    window.onload = function() 
+    {
+        var recipeName = getRecipeName();
+        if (recipeName) 
+        {
+            displayRecipeDetails(recipeName);
+        }
+    };
+    function getRecipeName() 
+    {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        return urlParams.get('recipe');
+    }
+</script>
+</body>
+</html>

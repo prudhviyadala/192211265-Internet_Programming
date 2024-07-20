@@ -1,0 +1,28 @@
+body 
+{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container 
+{
+  text-align: center;
+}
+.my-button 
+{
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.my-button:hover 
+{
+  background-color: #2980b9;
+}

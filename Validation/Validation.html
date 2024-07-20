@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <link rel="stylesheet" href="Validation.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+    <div class="container">
+        <form id="myForm" class="form-box" onsubmit="return validateForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="detailsContainer" class="show-details" style="display: none;"></div>
+    </div>
+
+    <script src="Validation.js"></script> <!-- Link to external JavaScript file -->
+</body>
+</html>

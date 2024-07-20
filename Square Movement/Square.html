@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS Animation: Bouncing Square</title>
+<style>
+    body 
+    {
+        margin: 0;
+        overflow: hidden;
+        background-color: black;
+    }
+    .square 
+    {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(249, 247, 247);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        animation: bounce 4s linear infinite;
+    }
+    @keyframes bounce 
+    {
+        0%, 100% 
+        {
+            left: 0;
+        }
+        50% 
+        {
+            left: calc(100vw - 50px);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="square"></div>
+</body>
+</html>

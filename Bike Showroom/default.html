@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #666;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            // Retrieve brand from query parameter
+            var urlParams = new URLSearchParams(window.location.search);
+            var brand = urlParams.get('brand');
+
+            if (brand) {
+                showModelsByBrand(decodeURIComponent(brand));
+            } else {
+                // Default content if no brand selected
+                document.getElementById('modelInfo').innerHTML = '<h2>Select a bike brand from the left column</h2><p>Details and specifications for selected model will appear here.</p>';
+            }
+        };
+
+        // Function to fetch and display models based on brand
+        function showModelsByBrand(brand) {
+            var modelsData = {
+                'Hero MotoCorp': [
+                    { model: 'Splendor Plus', specifications: 'Engine: 97.2cc, Power: 8.36PS, Torque: 8.05Nm' },
+                    { model: 'Passion Pro', specifications: 'Engine: 110cc, Power: 9.15PS, Torque: 9.89Nm' },
+                    { model: 'Glamour', specifications: 'Engine: 125cc, Power: 10.87PS, Torque: 10.6Nm' }
+                    // Add more models as needed
+                ],
+                'Bajaj Auto': [
+                    { model: 'Pulsar 150', specifications: 'Engine: 149.5cc, Power: 14PS, Torque: 13.25Nm' },
+                    { model: 'Pulsar NS200', specifications: 'Engine: 199.5cc, Power: 24.5PS, Torque: 18.5Nm' },
+                    { model: 'Dominar 400', specifications: 'Engine: 373.3cc, Power: 40PS, Torque: 35Nm' }
+                    // Add more models as needed
+                ],
+                'TVS Motor Company': [
+                    { model: 'Apache RTR 160', specifications: 'Engine: 159.7cc, Power: 15.53PS, Torque: 13.9Nm' },
+                    { model: 'Apache RR 310', specifications: 'Engine: 312.2cc, Power: 34PS, Torque: 27.3Nm' },
+                    { model: 'Jupiter', specifications: 'Engine: 109.7cc, Power: 7.47PS, Torque: 8.4Nm' }
+                    // Add more models as needed
+                ],
+                'Royal Enfield': [
+                    { model: 'Classic 350', specifications: 'Engine: 346cc, Power: 20.07PS, Torque: 28Nm' },
+                    { model: 'Bullet 350', specifications: 'Engine: 346cc, Power: 19.1PS, Torque: 28Nm' },
+                    { model: 'Interceptor 650', specifications: 'Engine: 648cc, Power: 47.65PS, Torque: 52Nm' }
+                    // Add more models as needed
+                ],
+                'KTM India': [
+                    { model: 'Duke 200', specifications: 'Engine: 199.5cc, Power: 25PS, Torque: 19.2Nm' },
+                    { model: 'RC 390', specifications: 'Engine: 373.3cc, Power: 43.5PS, Torque: 35Nm' },
+                    { model: 'Adventure 250', specifications: 'Engine: 248.8cc, Power: 30PS, Torque: 24Nm' }
+                    // Add more models as needed
+                ],
+                'Yamaha Motors': [
+                    { model: 'FZ-S Fi Version 3.0', specifications: 'Engine: 149cc, Power: 12.4PS, Torque: 13.6Nm' },
+                    { model: 'YZF R15 V3', specifications: 'Engine: 155cc, Power: 18.6PS, Torque: 14.1Nm' },
+                    { model: 'MT-15', specifications: 'Engine: 155cc, Power: 18.5PS, Torque: 13.9Nm' }
+                    // Add more models as needed
+                ],
+                'Suzuki Motorcycle India Private Limited.': [
+                    { model: 'Gixxer SF 250', specifications: 'Engine: 249cc, Power: 26.5PS, Torque: 22.2Nm' },
+                    { model: 'Hayabusa', specifications: 'Engine: 1340cc, Power: 197PS, Torque: 155Nm' },
+                    { model: 'Access 125', specifications: 'Engine: 124cc, Power: 8.7PS, Torque: 10Nm' }
+                    // Add more models as needed
+                ],
+                'Piaggio India': 
+                [
+                    { model: 'Vespa', specifications: 'Engine: 149cc, Power: 10.46PS, Torque: 10.6Nm' },
+                    { model: 'Aprilia SR 125', specifications: 'Engine: 124cc, Power: 9.52PS, Torque: 9.9Nm' },
+                    { model: 'Vespa Racing Sixties', specifications: 'Engine: 149cc, Power: 10.46PS, Torque: 10.6Nm' }
+            ]
+                    // Add more models as needed
+                }
+                // Add more brands and models as needed
+            };
+
+            // Update right frame content with model details
+            var modelInfo = modelsData[brand];
+            if (modelInfo) {
+                var html = '<h2>Models for ' + brand + '</h2>';
+                for (var i = 0; i < modelInfo.length; i++) {
+                    html += '<h3>' + modelInfo[i].model + '</h3><p>' + modelInfo[i].specifications + '</p>';
+                }
+                document.getElementById('modelInfo').innerHTML = html;
+            } else {
+                document.getElementById('modelInfo').innerHTML = '<h2>No models found for ' + brand + '</h2>';
+            }
+    </script>
+</head>
+<body>
+    <div class="container" id="modelInfo">
+        <!-- Default content loaded dynamically -->
+    </div>
+</body>
+</html>
